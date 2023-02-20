@@ -61,7 +61,8 @@ Run the setup method, thus select and customize global and per-module settings/f
 
 **Note** I'd suggest [nvim-config-local](https://github.com/klen/nvim-config-local) over the
 built-in `exrc` for security reasons, thus the partial configuration has to be personally *trusted*
-before getting sourced automatically.
+before getting sourced automatically. Upcoming feature `:trust` of nvim 0.9 will soon deprecate this requirment!
+
 
 ```lua
 -- # Just require modules with the default configuration for the modules

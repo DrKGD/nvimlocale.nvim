@@ -120,7 +120,7 @@ local DEFAULTS = {
 		-- # Events which fires upon starting the job
 		on_start	= {
 			function(_, obj)
-				obj.notify:info({ message = ('Compilation job for ‹%s.pdf› started 🟢 ')
+				obj.notify:info({ cat = 'compile', message = ('Compilation job for ‹%s.pdf› started 🟢 ')
 					:format(obj._init.compile_src), nodismiss = true })
 			end
 		},
@@ -129,11 +129,11 @@ local DEFAULTS = {
 		on_exit	= {
 			{ condition = function(_, ecode, signal) return ecode == 0 and signal == 0 end,
 				callback = function(_, _, _, obj)
-					obj.notify:info({ message = ('Document ‹%s.pdf› has been updated 🟩 '):format(obj._init.compile_src), timeout = 1000 })
+					obj.notify:info({ cat = 'compile', message = ('Document ‹%s.pdf› has been updated 🟩 '):format(obj._init.compile_src), timeout = 1000 })
 				end },
 
 			{ condition = function(_, ecode) return ecode ~= 0 end, callback = function(_, _, _, obj)
-					obj.notify:warn({ message= ('Compilation job for ‹%s.pdf› failed 🟥 '):format(obj._init.compile_src), timeout = 1000 })
+					obj.notify:warn({ cat = 'compile', message= ('Compilation job for ‹%s.pdf› failed 🟥 '):format(obj._init.compile_src), timeout = 1000 })
 
 				end }
 		},
@@ -141,14 +141,14 @@ local DEFAULTS = {
 		-- # Events which fires upon killing the compilation job
 		on_kill = {
 			function(obj)
-				obj.notify:info({ message = ('Compilation job for ‹%s.pdf› was aborted 🟧 '):format(obj._init.compile_src), timeout = 1000 })
+				obj.notify:info({ cat = 'compile', message = ('Compilation job for ‹%s.pdf› was aborted 🟧 '):format(obj._init.compile_src), timeout = 1000 })
 			end
 		},
 
 		-- # Events which fires upon respawning the compilation job
 		on_respawn = {
 			function(obj)
-				obj.notify:info({ message = ('Compilation job for ‹%s.pdf› restarted 🟦 '):format(obj._init.compile_src), nodismiss = true})
+				obj.notify:info({ cat = 'compile', message = ('Compilation job for ‹%s.pdf› restarted 🟦 '):format(obj._init.compile_src), nodismiss = true})
 			end
 		}
 	},
