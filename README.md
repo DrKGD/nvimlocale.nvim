@@ -30,7 +30,7 @@ _Plug_ the configuration within your favorite package manager.
     },
 
     config = function()
-        require('deatharte').setup {
+        require('deatharte-api').setup {
             -- ... options ...
         }
     end },

@@ -1,7 +1,7 @@
 --- # latex
-local utilvim		= require('deatharte.util.vim')
-local utildeps	= require('deatharte.util.deps')
-local	ntf				= require('deatharte.hnd.notificator').new { name = 'nvimlocale.module.latex', render = 'default' }
+local utilvim		= require('deatharte-api.util.vim')
+local utildeps	= require('deatharte-api.util.deps')
+local	ntf				= require('deatharte-api.hnd.notificator').new { name = 'nvimlocale.module.latex', render = 'default' }
 
 ----------------
 ---   Deps   ---
@@ -292,20 +292,20 @@ return function(globalopts, moduleopts)
 	loaded_configuration = config
 
 	-- # Start inotifywait watcher
-	KEEP.WATCHER = require('deatharte.jobs.builtin.inotifywait').new(config.inotifywait)
+	KEEP.WATCHER = require('deatharte-api.jobs.builtin.inotifywait').new(config.inotifywait)
 
 	-- # Initialize watchlist (will automatically source all the watched files)
-	KEEP.TRACKER = require('deatharte.hnd.tracker').new(('lualatex.%s'):format(config.instance))
+	KEEP.TRACKER = require('deatharte-api.hnd.tracker').new(('lualatex.%s'):format(config.instance))
 
 	-- # Initializze compile job
 	config.compile.args[#config.compile.args+1] =
 		('%s.tex'):format(config.compile.compile_src)
-	KEEP.COMPILE = require('deatharte.jobs.prochandler').new(config.compile)
+	KEEP.COMPILE = require('deatharte-api.jobs.prochandler').new(config.compile)
 
 	-- # Initialize previewer job
 	config.preview.args[#config.preview.args+1] =
 		('%s.pdf'):format(config.compile.compile_src)
-	KEEP.PREVIEWER = require('deatharte.jobs.prochandler').new(config.preview)
+	KEEP.PREVIEWER = require('deatharte-api.jobs.prochandler').new(config.preview)
 
 	-- # Setup bindings
 	if config.register_commands then

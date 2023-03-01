@@ -1,11 +1,11 @@
 -- # nvimlocale
-local	ntf				= require('deatharte.hnd.notificator').new { name = 'nvimlocale', render = 'default' }
+local	ntf				= require('deatharte-api.hnd.notificator').new { name = 'nvimlocale', render = 'default' }
 
 ----------------
 ---   Deps   ---
 
 -- # Deatharte api IS a requirement
-local ok, _ = pcall(require, 'deatharte')
+local ok, _ = pcall(require, 'deatharte-api')
 if not ok then
 	vim.notify('‹deatharte.api.nvim› was not found, ensure it is installed!', vim.log.levels.ERROR, {
 		plugin = 'nvimlocale'
