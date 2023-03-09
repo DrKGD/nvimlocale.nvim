@@ -272,8 +272,6 @@ local reqs = function(config)
 		return false
 	end
 
-	print(vim.inspect(missingdeps))
-
 	return true
 end
 
